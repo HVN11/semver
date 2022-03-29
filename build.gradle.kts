@@ -1,5 +1,5 @@
 plugins {
-    kotlin("multiplatform") version "1.6.0"
+    kotlin("multiplatform") version "1.6.10"
 }
 
 group = "net.swiftzer.semver"
@@ -39,13 +39,13 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.0")
+                implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation("org.jetbrains.kotlin:kotlin-test-junit:1.6.0")
+                implementation("org.jetbrains.kotlin:kotlin-test-junit:1.6.10")
                 implementation("junit:junit:4.12")
             }
         }
