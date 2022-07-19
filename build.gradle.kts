@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "net.swiftzer.semver"
-version = "x"
+version = "1.2.0"
 
 repositories {
     mavenCentral()
@@ -11,6 +11,7 @@ repositories {
 
 kotlin {
     ios()
+    iosSimulatorArm64()
     jvm {
         compilations.all {
             kotlinOptions.jvmTarget = "1.8"
@@ -57,5 +58,6 @@ kotlin {
         val nativeTest by getting
         val iosMain by getting
         val iosTest by getting
+        val iosSimulatorArm64Main by getting
     }
 }
