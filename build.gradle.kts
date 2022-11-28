@@ -1,5 +1,5 @@
 plugins {
-    kotlin("multiplatform") version "1.6.10"
+    kotlin("multiplatform") version "1.7.21"
 }
 
 group = "net.swiftzer.semver"
@@ -10,7 +10,8 @@ repositories {
 }
 
 kotlin {
-    ios()
+    iosX64()
+    iosArm64()
     iosSimulatorArm64()
     jvm {
         compilations.all {
@@ -40,14 +41,14 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
+                implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.21")
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation("org.jetbrains.kotlin:kotlin-test-junit:1.6.10")
-                implementation("junit:junit:4.12")
+                implementation("org.jetbrains.kotlin:kotlin-test-junit:1.7.21")
+                implementation("junit:junit:4.13.2")
             }
         }
         val jvmMain by getting
@@ -56,8 +57,23 @@ kotlin {
         val jsTest by getting
         val nativeMain by getting
         val nativeTest by getting
-        val iosMain by getting
-        val iosTest by getting
+        val iosX64Main by getting
+        val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
+        val iosMain by creating {
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+        }
+        val iosX64Test by getting
+        val iosArm64Test by getting
+        val iosSimulatorArm64Test by getting
+        val iosTest by creating {
+            dependsOn(commonTest)
+            iosX64Test.dependsOn(this)
+            iosArm64Test.dependsOn(this)
+            iosSimulatorArm64Test.dependsOn(this)
+        }
     }
 }
